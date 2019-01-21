@@ -646,7 +646,9 @@ export default class ReactCalendarTimeline extends Component {
     const scrollComponent = this.scrollComponent
     const { left: scrollX } = scrollComponent.getBoundingClientRect()
 
-    const xRelativeToTimeline = e.clientX - scrollX
+    // clientX for touch devices 
+    var clientX = e.clientX || e.changedTouches[0].clientX
+    const xRelativeToTimeline = clientX - scrollX
 
     const relativeItemPosition = xRelativeToTimeline / width
     const zoom = visibleTimeEnd - visibleTimeStart
